@@ -6,7 +6,7 @@ import {
   waitUntilBucketExists,
 } from "@aws-sdk/client-s3";
 
-const bucketName = "jesse-s3-" + Date.now();
+const bucketName = "aws-config-test-" + Date.now();
 const maxWaitTime = 60;
 
 const client = new S3Client({ region: 'us-east-1' }); // No credentials needed at this stage
