@@ -1,10 +1,10 @@
-import {
+const {
   BucketAlreadyExists,
   BucketAlreadyOwnedByYou,
   CreateBucketCommand,
   S3Client,
   waitUntilBucketExists,
-} from "@aws-sdk/client-s3";
+} = require("@aws-sdk/client-s3");
 
 const bucketName = "aws-config-test-" + Date.now();
 const maxWaitTime = 60;
