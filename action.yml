@@ -1,0 +1,28 @@
+name: AWS Credentials Test Create S3
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  create-s3-bucket:
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials for us-east-1 region
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          audience: sts.amazonaws.com
+          aws-region: us-east-1
+          role-to-assume: arn:aws:iam::536697269866:role/jesse-aws-config-action-test # Chad made a new IAM role and trusted GHA IdP
+
+      - name: Create S3 Bucket
+      runs:
+        using: 'node12' 
+        main: 'index.js' 
