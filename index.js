@@ -6,6 +6,23 @@ const {
   waitUntilBucketExists,
 } = require("@aws-sdk/client-s3");
 
+const { STSClient, GetCallerIdentityCommand } = require("@aws-sdk/client-sts");
+
+const getAccountId = async () => {
+  const client = new STSClient({ region: "us-east-1" }); // Specify your region
+  const command = new GetCallerIdentityCommand({});
+  
+  try {
+    const response = await client.send(command);
+    console.log("AWS Account ID:", response.Account);
+    return response.Account;
+  } catch (error) {
+    console.error("Error retrieving account ID:", error);
+  }
+};
+
+getAccountId();
+
 const bucketName = "aws-config-test-" + Date.now();
 const maxWaitTime = 60;
 
