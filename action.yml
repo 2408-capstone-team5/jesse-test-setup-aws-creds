@@ -1,5 +1,5 @@
 name: AWS Credentials Test Create S3
 description: Example s3 to test aws credentials
 runs:
-  using: node12 # Runtime Environment
+  using: node20 # Runtime Environment
   main: index.js # Script to run, path is relative
